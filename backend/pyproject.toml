@@ -1,0 +1,61 @@
+[tool.poetry]
+name = "FDK-LLM"
+version = "0.1.0"
+description = "Backend for FDK Orakelet"
+authors = ["Lars Kåre Syversen <lars.kaare.syversen@entur.org>"]
+license = "MIT"
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.109.0"
+prometheus-fastapi-instrumentator = "^6.0.0"
+uvicorn = "^0.27.0"
+gunicorn = "^21.0.0"
+httpx = "^0.26.0"
+google-cloud-secret-manager = "^2.18.1"
+google-crc32c = "^1.5.0"
+google-cloud-storage = "^2.14.0"
+langchain = "^0.1.5"
+langchain-google-vertexai = "^0.0.3"
+pgvector = "^0.2.5"
+cloud-sql-python-connector = "^1.6.0"
+asyncpg = "^0.29.0"
+greenlet = "^3.0.3"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-cov = "^4.0.0"
+requests = "^2.28.1"
+pre-commit = "^3.0.0"
+black = "^24.0.0"
+
+[tool.black]
+# Retrieved from https://github.com/psf/black/blob/master/pyproject.toml
+line-length = 88
+target-version = ['py36', 'py37', 'py38']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  # The following are specific to Black, you probably don't want those.
+  | blib2to3
+  | tests/data
+  | profiling
+)/
+'''
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
