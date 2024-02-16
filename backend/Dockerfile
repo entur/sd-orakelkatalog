@@ -32,7 +32,22 @@ COPY \
     ./
 # Update, install, cleanup and user/group creation
 # hadolint ignore=DL3008,DL3013
-RUN groupadd -g 10101 appgroup && \
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y build-essential tini && \
+    # upgrade pip \
+    pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt && \
+    poetry install --only main --no-ansi && \
+    echo 'tzdata tzdata/Areas select Europe' | debconf-set-selections && \
+    echo 'tzdata tzdata/Zones/Etc select Oslo' | debconf-set-selections && \
+    # remove build dependencies and cache \
+    apt-get remove -y build-essential && \
+    apt-get autoremove -y && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /root/.cache/pip && \
+    # gid/pid over 10k is best practice \
+    groupadd -g 10101 appgroup && \
     useradd -u 10100 -g 10101 --create-home appuser
 # run as appuser:appgroup
 USER 10100:10101

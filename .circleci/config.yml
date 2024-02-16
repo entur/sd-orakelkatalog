@@ -5,11 +5,24 @@
 # https://circleci.com/docs/language-python/ for more details
 version: 2.1
 aliases:
+  - &install-essentials
+    name: Install build essentials
+    command: |
+      apt-get update
+      apt-get install --no-install-recommends -y build-essential tini
+  - &cleanup
+    name: Cleanup build files
+    command: |
+      apt-get remove -y build-essential
+      apt-get autoremove -y
+      apt-get clean -y
+      rm -rf /var/lib/apt/lists/*
+      rm -rf /root/.cache/pip
   - &poetry-install
     name: Install poetry dependencies
     command: |
       cd backend/
-      poetry install
+      poetry --no-root install
   - &google-sdk-container-config
     docker:
       - image: google/cloud-sdk:latest
@@ -65,17 +78,19 @@ jobs:
     <<: *google-sdk-container-config
     steps:
       - setup_remote_docker:
-          version: 19.03.13
+          version: 20.10.7
           docker_layer_caching: true
       - attach_workspace:
           at: ~/project
       - run: *GCP-auth-docker
       - checkout
       - run: *create-image-version
+      - run: *install-essentials
       - python/install-packages:
           pkg-manager: pip
           app-dir: ~/project/backend/  # If your requirements.txt isn't in the root directory.
       - run: *poetry-install
+      - run: *cleanup
       - run: *docker-build-and-push
 
 
