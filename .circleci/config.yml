@@ -8,6 +8,7 @@ aliases:
   - &poetry-install
     name: Install poetry dependencies
     command: |
+      cd backend/
       poetry install
   - &google-sdk-container-config
     docker:
