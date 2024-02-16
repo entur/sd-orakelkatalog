@@ -59,6 +59,11 @@ jobs:
   build-push:
     <<: *google-sdk-container-config
     steps:
+      - setup_remote_docker:
+          version: 19.03.13
+          docker_layer_caching: true
+      - attach_workspace:
+          at: ~/project
       - run: *GCP-auth-docker
       - checkout
       - run: *create-image-version
