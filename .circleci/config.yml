@@ -5,6 +5,10 @@
 # https://circleci.com/docs/language-python/ for more details
 version: 2.1
 aliases:
+  - &poetry-install
+    name: Install poetry dependencies
+    command: |
+      poetry install
   - &google-sdk-container-config
     docker:
       - image: google/cloud-sdk:latest
@@ -70,6 +74,7 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
           app-dir: ~/project/backend/  # If your requirements.txt isn't in the root directory.
+      - run: *poetry-install
       - run: *docker-build-and-push
 
 
