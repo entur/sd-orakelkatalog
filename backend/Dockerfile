@@ -13,7 +13,10 @@ ENV PYTHONUNBUFFERED=1 \
     VENV_PATH="/opt/pysetup/.venv" \
     DEBIAN_FRONTEND=noninteractive \
     DEBCONF_NONINTERACTIVE_SEEN=true \
-    TZ=Europe/Oslo
+    TZ=Europe/Oslo \
+    GCP_PROJECT=ent-data-fdkllm-ext-dev \
+    GCP_REGION=europe-north1
+
 # prepend poetry and venv to path
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
@@ -22,11 +25,11 @@ ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 ###############################################
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 WORKDIR $PYSETUP_PATH
-#COPY \
-#    poetry.lock  \
-#    requirements.txt \
-#    pyproject.toml \
-#    ./
+COPY \
+    ./backend/poetry.lock  \
+    ./backend/requirements.txt \
+    ./backend/pyproject.toml \
+    ./
 # Update, install, cleanup and user/group creation
 # hadolint ignore=DL3008,DL3013
 RUN apt-get update && \
@@ -50,7 +53,7 @@ RUN apt-get update && \
 USER 10100:10101
 
 # Copy the app code from the host machine
-#COPY src/ rocketlaunch/
+COPY ./backend/src/ src/
 
 # Serve the application with the gunicorn server
 # Arguments explanation:
