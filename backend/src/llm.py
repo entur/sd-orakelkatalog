@@ -24,5 +24,6 @@ async def llm_query(request: Request):
     matches = await match_datasets(query)
 
     docs = [Document(page_content=t) for t in matches]
-    answer = invoke(docs, query_text)
-    return answer["output_text"]
+    answer = await invoke(docs, query_text)
+    #return answer["output_text"]
+    return answer["text"]

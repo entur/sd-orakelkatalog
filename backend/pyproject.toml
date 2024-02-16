@@ -20,7 +20,7 @@ google-cloud-storage = "^2.14.0"
 langchain = "^0.1.5"
 langchain-google-vertexai = "^0.0.3"
 pgvector = "^0.2.5"
-cloud-sql-python-connector = "^1.6.0"
+cloud-sql-python-connector = "^1.7.0"
 asyncpg = "^0.29.0"
 greenlet = "^3.0.3"
 
