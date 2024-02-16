@@ -32,7 +32,8 @@ COPY \
     ./
 # Update, install, cleanup and user/group creation
 # hadolint ignore=DL3008,DL3013
-RUN poetry install --only main --no-ansi && \
+RUN pip install --no-cache-dir -r requirements.txt && \
+    poetry install --only main --no-ansi && \
     echo 'tzdata tzdata/Areas select Europe' | debconf-set-selections && \
     echo 'tzdata tzdata/Zones/Etc select Oslo' | debconf-set-selections && \
     # remove build dependencies and cache \
