@@ -32,10 +32,7 @@ COPY \
     ./
 # Update, install, cleanup and user/group creation
 # hadolint ignore=DL3008,DL3013
-RUN apt-get update && \
-    apt-get install --no-install-recommends -y build-essential tini && \
-    # upgrade pip \
-    pip install --no-cache-dir --upgrade pip && \
+RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt && \
     poetry install --only main --no-ansi && \
     echo 'tzdata tzdata/Areas select Europe' | debconf-set-selections && \
