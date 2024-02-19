@@ -9,6 +9,11 @@ common:
     memory: 512
     replicas: 1
     maxReplicas: 2
+    probes:
+      liveness:
+        path: /health/alive
+      readiness:
+        path: /health/ready
   ingress:
     enabled: true
     trafficType: api
