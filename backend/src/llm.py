@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Response
 from src.gcp_postgres import connect_with_connector, match_datasets
 from src.gcp_vertex import embedding, invoke
 from langchain.docstore.document import Document
@@ -9,15 +9,14 @@ router = APIRouter()
 # db = connect_with_connector()
 
 
-@router.post("/test")
-async def llm_queryt(request: Request):
-    print(await request.body())
-    return
-
-
 @router.post("/llmtest")
-async def llm_query(request: Request):
+async def llm_query(request: Request, response: Response):
     body = await request.json()
+
+    if "query" not in body:
+        response.status_code = 400
+        return response
+
     query_text = str(body["query"])
     query = embedding(query_text)
 

@@ -17,6 +17,7 @@ combine_prompt = PromptTemplate(template=combine_prompt_template, input_variable
 #chain = load_summarize_chain(llm, chain_type="map_reduce", map_prompt=map_prompt, combine_prompt=combine_prompt)
 chain = LLMChain(llm=llm, prompt=combine_prompt)
 
+
 def embedding(query):
     return embeddings_service.embed_query(query)
 

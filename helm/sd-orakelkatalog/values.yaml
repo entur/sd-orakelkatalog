@@ -2,11 +2,13 @@ common:
   app: fdkoracle
   shortname: fdkoracle
   team: sd
-  env: prd
+  env: dev
   container:
     cpu: 200m
     image: <+artifacts.primary.image>
     memory: 512
+    replicas: 1
+    maxReplicas: 2
   ingress:
     enabled: true
     trafficType: api

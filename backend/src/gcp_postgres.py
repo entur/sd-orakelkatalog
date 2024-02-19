@@ -6,16 +6,15 @@ import asyncpg
 import asyncio
 
 import sqlalchemy
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncEngine, AsyncConnection, AsyncSession
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncEngine, AsyncSession
 from src.gcp_secret import get_secret
 from pgvector.asyncpg import register_vector
 
 similarity_threshold = 0.5
 num_matches = 5
 
-project_id = os.environ.get('GCP_PROJECT')
-project_region = os.environ.get('GCP_REGION')
+project_id = os.environ.get('GCP_PG_PROJECT')
+project_region = os.environ.get('GCP_PG_REGION')
 
 db_instance = get_secret('PGINSTANCES')
 db_user = get_secret("PGUSER")
@@ -125,8 +124,3 @@ async def match_datasets(query):
 
         return matches
 
-
-# if __name__ == '__main__':
-#     db = connect_with_connector()   
-#     add_data(db)
-#     get_data(db)

@@ -14,7 +14,9 @@ ENV PYTHONUNBUFFERED=1 \
     DEBIAN_FRONTEND=noninteractive \
     DEBCONF_NONINTERACTIVE_SEEN=true \
     TZ=Europe/Oslo \
-    GCP_PROJECT=ent-data-fdkllm-ext-dev \
+    GCP_PG_PROJECT=ent-data-fdkllm-ext-dev \
+    GCP_PG_REGION=europe-north1 \
+    GCP_PROJECT=ent-fdkoracle-dev \
     GCP_REGION=europe-north1
 
 # prepend poetry and venv to path
