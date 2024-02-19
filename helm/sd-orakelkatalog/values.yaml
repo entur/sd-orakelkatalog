@@ -17,6 +17,7 @@ common:
   ingress:
     enabled: true
     trafficType: public
+    host: fdk-llm.dev.entur.io
   deployment:
     enabled: true
   service:
