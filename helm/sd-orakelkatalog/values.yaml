@@ -16,7 +16,7 @@ common:
         path: /health/ready
   ingress:
     enabled: true
-    trafficType: api
+    trafficType: public
   deployment:
     enabled: true
   service:
