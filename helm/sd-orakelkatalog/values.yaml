@@ -18,8 +18,6 @@ common:
     enabled: true
     trafficType: public
     host: fdk-llm.dev.entur.io
-  postgres:
-    enabled: true
   deployment:
     enabled: true
   service:
