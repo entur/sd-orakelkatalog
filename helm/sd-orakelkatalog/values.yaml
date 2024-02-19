@@ -8,7 +8,7 @@ common:
     image: <+artifacts.primary.image>
     memory: 512
     replicas: 1
-    maxReplicas: 2
+    maxReplicas: 1
     probes:
       liveness:
         path: /health/alive
@@ -17,7 +17,6 @@ common:
   ingress:
     enabled: true
     trafficType: api
-    host: fdk-llm-host
   deployment:
     enabled: true
   service:
