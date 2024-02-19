@@ -1,5 +1,5 @@
 common:
-  app: fdk-llm
+  app: fdkoracle
   shortname: fdkoracle
   team: sd
   env: prd
