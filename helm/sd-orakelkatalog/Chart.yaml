@@ -1,0 +1,9 @@
+apiVersion: v2
+name: sd-orakelkatalog
+description: "LLM modell for enklere søk på data.norge.no"
+version: 0.0.1
+appVersion: 0.0.1
+dependencies:
+  - name: common
+    version: 1.17.1
+    repository: "https://entur.github.io/helm-charts"

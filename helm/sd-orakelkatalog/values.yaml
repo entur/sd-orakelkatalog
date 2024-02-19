@@ -1,0 +1,17 @@
+common:
+  app: fdk-llm
+  shortname: fdkoracle
+  team: sd
+  env: prd
+  container:
+    cpu: 200m
+    image: <+artifacts.primary.image>
+    memory: 512
+  ingress:
+    enabled: true
+    trafficType: api
+    host: fdk-llm
+  deployment:
+    enabled: true
+  service:
+    enabled: true

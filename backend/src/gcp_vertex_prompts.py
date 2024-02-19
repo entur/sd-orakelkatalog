@@ -16,11 +16,11 @@ combine_prompt_template = """
     Using those dataset descriptions, answer the following
     question in as much detail as possible.
     You should only use the information in the descriptions.
-    Your answer should include the title of the dataset, and why it matches the question posed by the user.
+    Your answer should include the title of each relevant dataset, and why they match the question posed by the user.
     Structure your answer to be easily readable by a human person.
     If no datasets are given, assume there are no datasets matching the
     question, and explain that the data might not exist.
-    Try to refer to the user directly, but never sign off your answer.
+    Refer to the user directly, but never sign off your answer.
     Give the answer in Markdown and mark the dataset title as bold text.
     Give the answer in Norwegian.
 

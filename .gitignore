@@ -1,5 +1,18 @@
 .idea/
 venv/
-DS_STORE
 *.ttl
 .env
+*.pyc
+
+*.exe
+*.swp
+.DS_Store
+.coverage/
+.vimrc
+.vscode/
+_dist/
+_dist_versions/
+bin/
+vendor/
+# Ignores charts pulled for dependency build tests
+cmd/helm/testdata/testcharts/issue-7233/charts/*
