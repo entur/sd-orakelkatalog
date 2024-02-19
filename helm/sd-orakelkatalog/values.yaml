@@ -10,7 +10,7 @@ common:
   ingress:
     enabled: true
     trafficType: api
-    host: fdk-llm
+    host: fdk-llm-host
   deployment:
     enabled: true
   service:
