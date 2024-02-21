@@ -22,3 +22,4 @@ common:
     enabled: true
   service:
     enabled: true
+

@@ -85,12 +85,6 @@ jobs:
       - run: *GCP-auth-docker
       - checkout
       - run: *create-image-version
-      #- run: *install-essentials
-      #- python/install-packages:
-      #    pkg-manager: pip
-      #    app-dir: ~/project/backend/  # If your requirements.txt isn't in the root directory.
-      # - run: *poetry-install
-      #- run: *cleanup
       - run: *docker-build-and-push
 
 

@@ -4,7 +4,6 @@ from google.cloud import secretmanager
 import google_crc32c
 import os
 from fastapi import APIRouter
-from os import environ
 
 router = APIRouter()
 
