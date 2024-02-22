@@ -37,7 +37,6 @@ async def llm_v1(request: Request, response: Response):
 async def llm_query(query_text, llm_version):
     gen_query = await gen_keywords(query_text)
     processed_queries = preprocess_queries(query_text, gen_query["text"])
-    print(processed_queries)
 
     query = embedding(processed_queries)
     matches = await match_datasets(query, llm_version)
