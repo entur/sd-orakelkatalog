@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request, Response
 from src.gcp_postgres import match_datasets
-from src.gcp_vertex import embedding, invoke
+from src.gcp_vertex import embedding, invoke, gen_keywords
 from langchain.docstore.document import Document
 
 router = APIRouter()
@@ -35,9 +35,19 @@ async def llm_v1(request: Request, response: Response):
 
 
 async def llm_query(query_text, llm_version):
-    query = embedding(query_text)
-    matches = await match_datasets(query, llm_version)
+    gen_query = await gen_keywords(query_text)
+    processed_queries = preprocess_queries(query_text, gen_query["text"])
+    print(processed_queries)
 
+    query = embedding(processed_queries)
+    matches = await match_datasets(query, llm_version)
     docs = [Document(page_content=t) for t in matches]
     answer = await invoke(docs, query_text, llm_version)
     return answer
+
+
+def preprocess_queries(original_query, generated_queries):
+    query = f"{original_query}\n{generated_queries}"
+    query = query.replace("\n", " ")
+    query = query.replace("-", " ")
+    return query.strip()

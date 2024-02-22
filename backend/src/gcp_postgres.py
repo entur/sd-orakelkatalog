@@ -7,7 +7,7 @@ from src.gcp_secret import get_secret
 from pgvector.asyncpg import register_vector
 
 similarity_threshold = 0.3
-num_matches = 5
+num_matches = 7
 
 project_id = os.environ.get('GCP_PG_PROJECT')
 project_region = os.environ.get('GCP_PG_REGION')

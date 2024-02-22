@@ -5,24 +5,6 @@
 # https://circleci.com/docs/language-python/ for more details
 version: 2.1
 aliases:
-  - &install-essentials
-    name: Install build essentials
-    command: |
-      apt-get update
-      apt-get install --no-install-recommends -y build-essential tini
-  - &cleanup
-    name: Cleanup build files
-    command: |
-      apt-get remove -y build-essential
-      apt-get autoremove -y
-      apt-get clean -y
-      rm -rf /var/lib/apt/lists/*
-      rm -rf /root/.cache/pip
-  - &poetry-install
-    name: Install poetry dependencies
-    command: |
-      cd backend/
-      poetry --no-root install
   - &google-sdk-container-config
     docker:
       - image: google/cloud-sdk:latest
