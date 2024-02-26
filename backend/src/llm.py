@@ -40,8 +40,8 @@ async def llm_query(query_text, llm_version):
 
     query = embedding(processed_queries)
     matches = await match_datasets(query, llm_version)
-    docs = [Document(page_content=t) for t in matches]
-    answer = await invoke(docs, query_text, llm_version)
+    # docs = [Document(page_content=t) for t in matches]
+    answer = await invoke(matches, query_text, llm_version)
     return answer
 
 

@@ -279,7 +279,7 @@ def transform():
         Datasettet har {dataset["access_rights"]} tilgang og {dataset["theme"]}.
         
         Beskrivelsen av datasettet er som følger:
-        {dataset["description"]}        
+        {dataset["description"]}
         
         {"Datakvaliteten til datasettet er beskrevet som følger: " + dataset["quality"] if has_quality else ""}
 
@@ -291,6 +291,9 @@ def transform():
         """
 
         summaries.append(summary)
+
+        if dataset["title"] == 'Automatiske passasjertellinger på strekninger operert av Kolumbus':
+            print(summary)
 
     df_dataset = df_dataset.assign(summary=summaries)
     df_dataset = df_dataset[['id', 'summary']]
@@ -338,5 +341,5 @@ async def load(df):
 
 # Main run sequence
 #extract()
-#df_datasets = transform()
+df_datasets = transform()
 #asyncio.run(load(df_datasets))
