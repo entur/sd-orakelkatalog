@@ -287,13 +287,12 @@ def transform():
         Datasettet har {len(distributions.index)} distribusjoner og tilbyr data på formatene {', '.join(f for f in format_set)}.
         {f'Nøkkelordene for datasettet er: {dataset["keywords"]}.' if has_keywords else ""}
         {f"Dataen er tidsmessig begrenset {dataset['temporal']}." if dataset['temporal'] is not None else ""}
-        Linken til datasettet er '{dataset["link"]}'
         """
 
         summaries.append(summary)
 
     df_dataset = df_dataset.assign(summary=summaries)
-    df_dataset = df_dataset[['id', 'summary']]
+    df_dataset = df_dataset[['id', 'title', 'summary', 'link']]
     print(df_dataset.head())
 
     return df_dataset
@@ -309,7 +308,7 @@ async def load(df):
     # Cloud SQL info
     database_user = os.getenv('SQL_DB_USER')
     database_password = os.getenv('SQL_PASSWORD')
-    database_name = "fdk-v2"
+    database_name = "fdk-v3"
 
     print(f"Begynner opplasting av data til {database_name}")
 
@@ -328,7 +327,9 @@ async def load(df):
         # Create the `products` table.
         await conn.execute("""CREATE TABLE IF NOT EXISTS datasets(
                                 id VARCHAR(200) PRIMARY KEY,
-                                summary TEXT)""")
+                                title VARCHAR(200),
+                                summary TEXT,
+                                link VARCHAR(100))""")
 
         # Copy the dataframe to the `products` table.
         tuples = list(df.itertuples(index=False))
@@ -338,5 +339,5 @@ async def load(df):
 
 # Main run sequence
 #extract()
-df_datasets = transform()
+#df_datasets = transform()
 #asyncio.run(load(df_datasets))

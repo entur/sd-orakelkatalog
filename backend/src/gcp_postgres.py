@@ -44,8 +44,7 @@ async def match_datasets(query, db_name):
                              ORDER BY similarity DESC
                              LIMIT $3
                      )
-                     SELECT id,
-                            summary
+                     SELECT *
                      FROM datasets
                      WHERE id IN (SELECT id FROM vector_matches)
                      """,
@@ -55,5 +54,5 @@ async def match_datasets(query, db_name):
             # Collect the description for all the matched similar toy products.
             matches.append(r["summary"])
 
-        return matches
+        return matches, results
 

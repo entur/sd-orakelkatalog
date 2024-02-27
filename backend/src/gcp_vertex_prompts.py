@@ -1,13 +1,38 @@
-combine_prompt_template_v2 = """
+dataset_prompt_template_v3 = """
     You will be given a detailed description of different datasets in norwegian
-    enclosed in triple backticks (```) and a question enclosed in
+    enclosed in triple backticks (```) and a question or query enclosed in
+    double backticks(``).
+    Select all datasets that are relevant to answer the question.
+    Proritize datasets with newer data.
+    Using those dataset descriptions, answer the following
+    question in as much detail as possible.
+    Give your answer in Norwegian.
+    You should only use the information in the descriptions.
+    Your answer should include the dataset title and why each dataset match the question posed by the user.
+    If no datasets are given, explain that the data may not exist.
+    Give the answer in Markdown and mark the dataset title as bold text.
+
+    Description:
+    ```{text}```
+
+
+    Question:
+    ``{user_query}``
+
+
+    Answer:
+"""
+
+dataset_prompt_template_v2 = """
+    You will be given a detailed description of different datasets in norwegian
+    enclosed in triple backticks (```) and a question or query enclosed in
     double backticks(``).
     Select the datasets that are most relevant to answer the question, with a maximum of 5 datasets.
     If there are more more than 5 relevant datasets, try to vary them in your answer.
     Create a markdown link on the format [DATASET_TITLE](DATA_NORGE_LINK) for each relevant dataset.
     Using those dataset descriptions, answer the following
     question in as much detail as possible.
-    You should only use the information in the descriptions.
+    You should only use athe information in the descriptions.
     Your answer should include the title links and why each dataset match the question posed by the user.
     If no datasets are given, explain that the data may not exist.
     Double check to make sure the markdown link format is correct and that the dataset title is the link text.
@@ -24,7 +49,7 @@ combine_prompt_template_v2 = """
     Answer:
 """
 
-combine_prompt_template_v1 = """
+dataset_prompt_template_v1 = """
     You will be given a detailed description of different datasets in norwegian
     enclosed in triple backticks (```) and a question enclosed in
     double backticks(``).
