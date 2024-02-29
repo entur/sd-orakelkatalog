@@ -152,4 +152,4 @@ vår postgres database. Denne er en dedikert server, som skaper løpende
 kostnader. `pgvector` har ingen virkning på kostnadene og det er kun
 serverkostnadene assosiert med postgres som vises her. 
 I motsetning har Vertex ikke skapt store kostnader for vår del,
-men denne ville fortsatt vært litt høyere i et mer populæert produksjonsmiljø.
+men denne ville fortsatt vært litt høyere i et mer populært produksjonsmiljø.
