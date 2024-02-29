@@ -136,7 +136,8 @@ forespørsler på bekostning av cirka 1 sekund ekstra behandlingstid.
 
 
 ## Kostnader
-Siden kostnad er en stor . Vertex AI er en serverless tjeneste fra Google,
+Siden kostnad er en stor faktor i AI-relaterte prosjekter, føler vi det lurt å dele
+våre kostnader i forbindelse med Orakelkatalogen. Vertex AI er en serverless tjeneste fra Google,
 som betyr at vi kun betaler for hver spørring vi gjør mot den. I praksis
 vil kostnadene for Vertex dermed være relativt liten, men kan i motsetning
 bli dyrere ved store antall spørringer.
