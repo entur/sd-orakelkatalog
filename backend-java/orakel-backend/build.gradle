@@ -1,0 +1,45 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.7-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'no.digdir.fdk'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/snapshot' }
+	maven { url 'https://repo.spring.io/milestone' }
+}
+
+ext {
+	set('springCloudGcpVersion', "5.4.1")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.google.cloud:spring-cloud-gcp-starter-sql-postgresql'
+	implementation 'dev.langchain4j:langchain4j-vertex-ai:0.31.0'
+	implementation 'com.pgvector:pgvector:0.1.4'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "com.google.cloud:spring-cloud-gcp-dependencies:${springCloudGcpVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
