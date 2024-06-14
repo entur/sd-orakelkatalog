@@ -54,7 +54,13 @@ async def llm_query(query_text, llm_version):
     titles = [r["title"].upper() for r in results if "title" in r]
     links = [r["link"] for r in results if "link" in r]
 
-    # docs = [Document(page_content=t) for t in matches]
+    # Stable sort entries
+    indices = sorted(range(len(titles)), key=titles.__getitem__)
+    titles = [titles[i] for i in indices]
+    links = [links[i] for i in indices]
+
+
+# docs = [Document(page_content=t) for t in matches]
     answer = await invoke(matches, query_text, llm_version)
     return answer, titles, links
 
